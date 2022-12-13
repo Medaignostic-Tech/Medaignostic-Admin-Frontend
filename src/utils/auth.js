@@ -184,30 +184,34 @@ class Auth {
     }
 
     addForms = async(organ, type, label, name, option) => {
+        const token = localStorage.getItem("token");
         let response = [];
         const formData = {
-            "_id": "",
             "type": type,
             "label": label,
             "name": name,
             "option": option,
             "organ": organ
         };
-        await axios.post(`${this.url}/forms`, formData)
+        const verificationData = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        await axios.post(`${this.url}/forms`, formData, verificationData)
             .then(res => {
-                const data = res.data;
-                if (data === null) {
-                    response = ["Form Field Added Successfully", "success"];
-                } else {
-                    response = ["API Error", "failure"];
-                }
+                response = ["Form Field Added Successfully", "text-success"];
             })
             .catch(err => {
                 if (err.response.status === 422) {
-                    response = ["Validation Error", "failure"];
+                    response = ["Validation Error", "text-danger"];
+                }
+                else if (err.response.status === 401) {
+                    response = ["Invalid or Inactive User", "text-danger"];
                 }
                 else {
-                    response = ["Internal Server Error", "failure"];
+                    response = ["Internal Server Error", "text-danger"];
                 }
             });
         return response;
