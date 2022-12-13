@@ -149,6 +149,14 @@ class Auth {
         return response;
     }
 
+    isSuperUser = async() => {
+        const user = await this.getUser();
+        if (user === "Invalid or Inactive User" || user === "Internal Server Error") {
+            return false;
+        }
+        return user.is_superuser;
+    }
+
     getForms = async(organ) => {
         const token = localStorage.getItem("token");
         let response;

@@ -31,6 +31,17 @@ function Login() {
     };
 
     useEffect(() => {
+        const isValid = async() => {
+            if (await auth.isSuperUser()) {
+                dashboardNavigate("/admin_dashboard", {replace: true});
+                dashboardNavigate(0);
+            }
+            else {
+                dashboardNavigate("/doctor_dashboard", {replace: true});
+                dashboardNavigate(0);
+            }
+        }
+
         if (alert === "Login Success" || alert === "API Error" || alert === "Internal Server Error" || alert === "Invalid Login Credentials" || alert === "User is not verified") {
             window.history.replaceState({}, document.title);
         }
@@ -44,8 +55,7 @@ function Login() {
             setAlert(loginResult.state.alert);
         }
         if (alert === "Login Success") {
-            dashboardNavigate("/dashboard", {replace: true});
-            dashboardNavigate(0);
+            isValid();
         }
     }, [alert]);
 
