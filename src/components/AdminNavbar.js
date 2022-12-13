@@ -28,12 +28,17 @@ function AdminNavbar() {
                         <Nav className="me-auto">
                             <Nav.Link href="/admin_dashboard">Home</Nav.Link>
                             <NavDropdown title="Forms">
-                                <NavDropdown.Item href="/add_forms">Add</NavDropdown.Item>
-                                <NavDropdown.Item href="/view_forms">View</NavDropdown.Item>
-                                <NavDropdown.Item href="/update_forms">Update</NavDropdown.Item>
-                                <NavDropdown.Item href="/delete_forms">Delete</NavDropdown.Item>
+                                <NavDropdown.Item href="/add_forms">Add Fields</NavDropdown.Item>
+                                <NavDropdown.Item href="/view_forms">View Fields</NavDropdown.Item>
+                                <NavDropdown.Item href="/update_forms">Update Fields</NavDropdown.Item>
+                                <NavDropdown.Item href="/delete_forms">Delete Fields</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="/profile">Profile</Nav.Link>
+                            <NavDropdown title="Models">
+                                <NavDropdown.Item href="/add_models">Add Instances</NavDropdown.Item>
+                                <NavDropdown.Item href="/view_models">View Instances</NavDropdown.Item>
+                                <NavDropdown.Item href="/update_models">Update Instances</NavDropdown.Item>
+                                <NavDropdown.Item href="/delete_models">Delete Instances</NavDropdown.Item>
+                            </NavDropdown>
                             &nbsp;&nbsp;&nbsp;
                             <Button variant="outline-light" onClick={callLogout}>Logout</Button>
                         </Nav>

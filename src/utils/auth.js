@@ -182,6 +182,36 @@ class Auth {
             });
         return response;
     }
+
+    addForms = async(organ, type, label, name, option) => {
+        let response = [];
+        const formData = {
+            "_id": "",
+            "type": type,
+            "label": label,
+            "name": name,
+            "option": option,
+            "organ": organ
+        };
+        await axios.post(`${this.url}/forms`, formData)
+            .then(res => {
+                const data = res.data;
+                if (data === null) {
+                    response = ["Form Field Added Successfully", "success"];
+                } else {
+                    response = ["API Error", "failure"];
+                }
+            })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    response = ["Validation Error", "failure"];
+                }
+                else {
+                    response = ["Internal Server Error", "failure"];
+                }
+            });
+        return response;
+    }
 }
 
 export default new Auth();
