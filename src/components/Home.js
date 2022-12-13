@@ -1,7 +1,9 @@
+import MainNavbar from './MainNavbar';
+
 function Home() {
     return (
-        <div>
-
+        <div className="common-background">
+            <MainNavbar />
         </div>
     );
 }
