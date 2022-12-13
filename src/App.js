@@ -5,6 +5,8 @@ import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import AdminDashboard from "./components/AdminDashboard";
 import AddForms from "./components/AddForms";
+import ViewForms from "./components/ViewForms";
+import UpdateForms from "./components/UpdateForms";
 import auth from "./utils/auth";
 import './App.css';
 
@@ -19,6 +21,8 @@ function App() {
                     <Route path = "/reset_password" exact element={<ResetPassword />}></Route>
                     <Route path = "/admin_dashboard" exact element={auth.isAuthenticated() ? <AdminDashboard /> : <Navigate to="/login" />}></Route>
                     <Route path = "/add_forms" exact element={auth.isAuthenticated() ? <AddForms /> : <Navigate to="/login" />}></Route>
+                    <Route path = "/view_forms" exact element={auth.isAuthenticated() ? <ViewForms /> : <Navigate to="/login" />}></Route>
+                    <Route path = "/update_forms" exact element={auth.isAuthenticated() ? <UpdateForms /> : <Navigate to="/login" />}></Route>
                 </Routes> 
             </BrowserRouter>
         </div>

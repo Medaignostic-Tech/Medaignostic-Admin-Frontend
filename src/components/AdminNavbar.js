@@ -22,7 +22,7 @@ function AdminNavbar() {
         <>
             <Navbar bg="dark" variant="dark" expand="md">
                 <Container>
-                    <Navbar.Brand href="/dashboard"><img src={ logo } alt="Medaignostic Admin" className="nav-logo"/></Navbar.Brand>
+                    <Navbar.Brand href="/admin_dashboard"><img src={ logo } alt="Medaignostic Admin" className="nav-logo"/></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />  
                     <Navbar.Collapse id="basic-navbar-nav">  
                         <Nav className="me-auto">
@@ -31,13 +31,10 @@ function AdminNavbar() {
                                 <NavDropdown.Item href="/add_forms">Add Fields</NavDropdown.Item>
                                 <NavDropdown.Item href="/view_forms">View Fields</NavDropdown.Item>
                                 <NavDropdown.Item href="/update_forms">Update Fields</NavDropdown.Item>
-                                <NavDropdown.Item href="/delete_forms">Delete Fields</NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="Models">
                                 <NavDropdown.Item href="/add_models">Add Instances</NavDropdown.Item>
                                 <NavDropdown.Item href="/view_models">View Instances</NavDropdown.Item>
-                                <NavDropdown.Item href="/update_models">Update Instances</NavDropdown.Item>
-                                <NavDropdown.Item href="/delete_models">Delete Instances</NavDropdown.Item>
                             </NavDropdown>
                             &nbsp;&nbsp;&nbsp;
                             <Button variant="outline-light" onClick={callLogout}>Logout</Button>

@@ -244,6 +244,69 @@ class Auth {
             });
         return response;
     }
+
+    deleteForm = async(id) => {
+        const token = localStorage.getItem("token");
+        let response;
+        const verificationData = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            params: {
+                "formId": id
+            }
+        };
+        await axios.delete(`${this.url}/forms`, verificationData)
+            .then(res => {
+                response = "Field Deleted Successfully";
+            })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    response = "Validation Error";
+                }
+                else {
+                    response = "Internal Server Error";
+                }
+            })
+        return response;
+    }
+
+    updateForm = async(id, organ, type, label, name, option) => {
+        const token = localStorage.getItem("token");
+        let response = [];
+        const formData = {
+            "type": type,
+            "label": label,
+            "name": name,
+            "option": option,
+            "organ": organ
+        };
+        const verificationData = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                "formId": id
+            }
+        };
+        await axios.patch(`${this.url}/forms`, formData, verificationData)
+            .then(res => {
+                response = ["Form Field Updated Successfully", "text-success"];
+            })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    response = ["Validation Error", "text-danger"];
+                }
+                else if (err.response.status === 401) {
+                    response = ["Invalid or Inactive User", "text-danger"];
+                }
+                else {
+                    response = ["Internal Server Error", "text-danger"];
+                }
+            });
+        return response;
+    }
 }
 
 export default new Auth();
