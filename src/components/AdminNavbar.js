@@ -32,9 +32,9 @@ function AdminNavbar() {
                                 <NavDropdown.Item href="/view_forms">View Fields</NavDropdown.Item>
                                 <NavDropdown.Item href="/update_forms">Update Fields</NavDropdown.Item>
                             </NavDropdown>
-                            <NavDropdown title="Models">
-                                <NavDropdown.Item href="/add_models">Add Instances</NavDropdown.Item>
-                                <NavDropdown.Item href="/view_models">View Instances</NavDropdown.Item>
+                            <NavDropdown title="Validations">
+                                <NavDropdown.Item href="/add_validations">Add Validations</NavDropdown.Item>
+                                <NavDropdown.Item href="/view_validations">View Validations</NavDropdown.Item>
                             </NavDropdown>
                             &nbsp;&nbsp;&nbsp;
                             <Button variant="outline-light" onClick={callLogout}>Logout</Button>
