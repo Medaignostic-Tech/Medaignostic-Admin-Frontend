@@ -7,6 +7,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import AddForms from "./components/AddForms";
 import ViewForms from "./components/ViewForms";
 import UpdateForms from "./components/UpdateForms";
+import AddValidations from "./components/AddValidations";
 import auth from "./utils/auth";
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
                     <Route path = "/add_forms" exact element={auth.isAuthenticated() ? <AddForms /> : <Navigate to="/login" />}></Route>
                     <Route path = "/view_forms" exact element={auth.isAuthenticated() ? <ViewForms /> : <Navigate to="/login" />}></Route>
                     <Route path = "/update_forms" exact element={auth.isAuthenticated() ? <UpdateForms /> : <Navigate to="/login" />}></Route>
+                    <Route path = "/add_validations" exact element={auth.isAuthenticated() ? <AddValidations /> : <Navigate to="/login" />}></Route>
                 </Routes> 
             </BrowserRouter>
         </div>

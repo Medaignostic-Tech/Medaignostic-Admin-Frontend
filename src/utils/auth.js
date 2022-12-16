@@ -307,6 +307,38 @@ class Auth {
             });
         return response;
     }
+
+    addValidations = async(val_name, val_link, field_names) => {
+        const token = localStorage.getItem("token");
+        let response = [];
+        const formData = {
+            "validation_name": val_name,
+            "validation_link": val_link,
+            "field_names": field_names
+        };
+        const verificationData = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        await axios.post(`${this.url}/validations`, formData, verificationData)
+            .then(res => {
+                response = ["Validation Field Added Successfully", "text-success"];
+            })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    response = ["Validation Error", "text-danger"];
+                }
+                else if (err.response.status === 401) {
+                    response = ["Invalid or Inactive User", "text-danger"];
+                }
+                else {
+                    response = ["Internal Server Error", "text-danger"];
+                }
+            });
+        return response;
+    }
 }
 
 export default new Auth();
