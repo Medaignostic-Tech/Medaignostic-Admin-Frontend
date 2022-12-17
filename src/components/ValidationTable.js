@@ -22,7 +22,7 @@ function ValidationTable() {
     }
 
     const handleDelete = async(id) => {
-        const response = await auth.deleteForm(id);
+        const response = await auth.deleteValidation(id);
         alert(response);
         dashboardNavigate("/admin_dashboard", {replace: true});
         dashboardNavigate(0);

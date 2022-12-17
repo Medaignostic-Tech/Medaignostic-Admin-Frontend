@@ -367,6 +367,32 @@ class Auth {
             });
         return response;
     }
+
+    deleteValidation = async(id) => {
+        const token = localStorage.getItem("token");
+        let response;
+        const verificationData = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            params: {
+                "validationId": id
+            }
+        };
+        await axios.delete(`${this.url}/validations`, verificationData)
+            .then(res => {
+                response = "Validation Field Deleted Successfully";
+            })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    response = "Validation Error";
+                }
+                else {
+                    response = "Internal Server Error";
+                }
+            })
+        return response;
+    }
 }
 
 export default new Auth();
