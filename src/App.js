@@ -9,6 +9,7 @@ import ViewForms from "./components/ViewForms";
 import UpdateForms from "./components/UpdateForms";
 import AddValidations from "./components/AddValidations";
 import ViewValidations from "./components/ViewValidations";
+import UpdateValidations from "./components/UpdateValidations";
 import auth from "./utils/auth";
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
                     <Route path = "/update_forms" exact element={auth.isAuthenticated() ? <UpdateForms /> : <Navigate to="/login" />}></Route>
                     <Route path = "/add_validations" exact element={auth.isAuthenticated() ? <AddValidations /> : <Navigate to="/login" />}></Route>
                     <Route path = "/view_validations" exact element={auth.isAuthenticated() ? <ViewValidations /> : <Navigate to="/login" />}></Route>
+                    <Route path = "/update_validations" exact element={auth.isAuthenticated() ? <UpdateValidations /> : <Navigate to="/login" />}></Route>
                 </Routes> 
             </BrowserRouter>
         </div>

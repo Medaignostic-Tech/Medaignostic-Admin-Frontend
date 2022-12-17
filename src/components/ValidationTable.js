@@ -35,7 +35,7 @@ function ValidationTable() {
             "validation_link": validation_link,
             "field_names": field_names
         }
-        dashboardNavigate("/update_forms", {replace: true, state: updateData});
+        dashboardNavigate("/update_validations", {replace: true, state: updateData});
         dashboardNavigate(0, {replace: true, state: updateData});
     }
 
