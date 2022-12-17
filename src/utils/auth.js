@@ -339,6 +339,34 @@ class Auth {
             });
         return response;
     }
+
+    getValidationsByPage = async(page) => {
+        const per_page = 10;
+        const token = localStorage.getItem("token");
+        let response;
+        const verificationData = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            params: {
+                "page": page,
+                "per_page": per_page
+            }
+        };
+        await axios.get(`${this.url}/validations/all`, verificationData)
+            .then(res => {
+                const data = res.data;
+                response = data;
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    response = "Invalid or Inactive User";
+                } else {
+                    response = "Internal Server Error";
+                }
+            });
+        return response;
+    }
 }
 
 export default new Auth();
