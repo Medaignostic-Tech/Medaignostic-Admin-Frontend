@@ -72,7 +72,7 @@ function UpdateValidations() {
                         <Card className='main-login mb-2' bg='light' text='dark' border='dark'>
                             <Card.Img variant="top" src={ logo } height="300em" />
                             <Card.Header>
-                                <h1>Update Form Fields</h1>
+                                <h1>Update Validations</h1>
                             </Card.Header>
                             <Card.Body>
                                 <Form>
