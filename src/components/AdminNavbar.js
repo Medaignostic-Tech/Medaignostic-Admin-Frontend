@@ -37,6 +37,10 @@ function AdminNavbar() {
                                 <NavDropdown.Item href="/view_validations">View Validations</NavDropdown.Item>
                                 <NavDropdown.Item href="/update_validations">Update Validations</NavDropdown.Item>
                             </NavDropdown>
+                            <NavDropdown title="Verifiers">
+                                <NavDropdown.Item href="/add_verifiers">Add Verifiers</NavDropdown.Item>
+                                <NavDropdown.Item href="/view_verifiers">View Verifiers</NavDropdown.Item>
+                            </NavDropdown>
                             &nbsp;&nbsp;&nbsp;
                             <Button variant="outline-light" onClick={callLogout}>Logout</Button>
                         </Nav>
