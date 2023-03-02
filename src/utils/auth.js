@@ -206,11 +206,9 @@ class Auth {
             .catch(err => {
                 if (err.response.status === 422) {
                     response = ["Validation Error", "text-danger"];
-                }
-                else if (err.response.status === 401) {
+                } else if (err.response.status === 401) {
                     response = ["Invalid or Inactive User", "text-danger"];
-                }
-                else {
+                } else {
                     response = ["Internal Server Error", "text-danger"];
                 }
             });
@@ -263,8 +261,7 @@ class Auth {
             .catch(err => {
                 if (err.response.status === 422) {
                     response = "Validation Error";
-                }
-                else {
+                } else {
                     response = "Internal Server Error";
                 }
             })
@@ -297,11 +294,9 @@ class Auth {
             .catch(err => {
                 if (err.response.status === 422) {
                     response = ["Validation Error", "text-danger"];
-                }
-                else if (err.response.status === 401) {
+                } else if (err.response.status === 401) {
                     response = ["Invalid or Inactive User", "text-danger"];
-                }
-                else {
+                } else {
                     response = ["Internal Server Error", "text-danger"];
                 }
             });
@@ -329,11 +324,9 @@ class Auth {
             .catch(err => {
                 if (err.response.status === 422) {
                     response = ["Validation Error", "text-danger"];
-                }
-                else if (err.response.status === 401) {
+                } else if (err.response.status === 401) {
                     response = ["Invalid or Inactive User", "text-danger"];
-                }
-                else {
+                } else {
                     response = ["Internal Server Error", "text-danger"];
                 }
             });
@@ -386,8 +379,7 @@ class Auth {
             .catch(err => {
                 if (err.response.status === 422) {
                     response = "Validation Error";
-                }
-                else {
+                } else {
                     response = "Internal Server Error";
                 }
             })
@@ -418,11 +410,90 @@ class Auth {
             .catch(err => {
                 if (err.response.status === 422) {
                     response = ["Validation Error", "text-danger"];
-                }
-                else if (err.response.status === 401) {
+                } else if (err.response.status === 401) {
                     response = ["Invalid or Inactive User", "text-danger"];
+                } else {
+                    response = ["Internal Server Error", "text-danger"];
                 }
-                else {
+            });
+        return response;
+    }
+
+    getDoctors = async() => {
+        const token = localStorage.getItem("token");
+        let response = [];
+        const verificationData = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        await axios.get(`${this.url}/verification/doctors`, verificationData)
+            .then(res => {
+                const data = res.data;
+                response = data;
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    response = "Invalid or Inactive User";
+                } else {
+                    response = "Internal Server Error";
+                }
+            });
+        return response;
+    }
+
+    getValidations = async() => {
+        const token = localStorage.getItem("token");
+        let response = [];
+        const verificationData = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        await axios.get(`${this.url}/verification/validations`, verificationData)
+            .then(res => {
+                const data = res.data;
+                response = data;
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    response = "Invalid or Inactive User";
+                } else {
+                    response = "Internal Server Error";
+                }
+            });
+        return response;
+    }
+
+    addVerifier = async(user_id, validation_id) => {
+        const token = localStorage.getItem("token");
+        let response = [];
+        const formData = {
+            "user_id": user_id,
+            "validation_id": validation_id
+        };
+        const verificationData = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        await axios.post(`${this.url}/verification`, formData, verificationData)
+            .then(res => {
+                if (res.data["result"] === "Record already exists") {
+                    response = ["Verifier Exists", "text-success"];
+                } else {
+                    response = ["Verifier Added Successfully", "text-success"];
+                }
+            })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    response = ["Validation Error", "text-danger"];
+                } else if (err.response.status === 401) {
+                    response = ["Invalid or Inactive User", "text-danger"];
+                } else {
                     response = ["Internal Server Error", "text-danger"];
                 }
             });
