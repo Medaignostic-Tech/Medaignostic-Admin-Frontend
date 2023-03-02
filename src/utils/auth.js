@@ -499,6 +499,59 @@ class Auth {
             });
         return response;
     }
+
+    getVerifiersByPage = async(page) => {
+        const per_page = 10;
+        const token = localStorage.getItem("token");
+        let response;
+        const verificationData = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            params: {
+                "page": page,
+                "per_page": per_page
+            }
+        };
+        await axios.get(`${this.url}/verification/all`, verificationData)
+            .then(res => {
+                const data = res.data;
+                response = data;
+            })
+            .catch(err => {
+                if (err.response.status === 401) {
+                    response = "Invalid or Inactive User";
+                } else {
+                    response = "Internal Server Error";
+                }
+            });
+        return response;
+    }
+
+    deleteVerifier = async(id) => {
+        const token = localStorage.getItem("token");
+        let response;
+        const verificationData = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            params: {
+                "verifier_id": id
+            }
+        };
+        await axios.delete(`${this.url}/verification`, verificationData)
+            .then(res => {
+                response = "Verification Deleted Successfully";
+            })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    response = "Validation Error";
+                } else {
+                    response = "Internal Server Error";
+                }
+            })
+        return response;
+    }
 }
 
 export default new Auth();
