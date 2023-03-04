@@ -18,6 +18,7 @@ function UpdateValidations() {
     const [id, setId] = useState('');
     const [validationName, setValidationName] = useState('');
     const [validationLink, setValidationLink] = useState('');
+    const [dataLink, setDataLink] = useState('');
     const [validationFields, setValidationFields] = useState('');
 
     const loginNavigate = useNavigate();
@@ -29,7 +30,7 @@ function UpdateValidations() {
             fields.push(field);
         }
         event.preventDefault();
-        const response = auth.updateValidation(id, validationName, validationLink, fields);
+        const response = auth.updateValidation(id, validationName, validationLink, dataLink, fields);
         const status = await response;
         setAlert(status[0]);
         setAlertStatus(status[1]);
@@ -89,6 +90,11 @@ function UpdateValidations() {
                                     <Form.Group className="mb-3" controlId="link">
                                         <Form.Label>Validation Link</Form.Label>
                                         <Form.Control type="text" placeholder="Enter validation link" required onChange={event => setValidationLink(event.target.value)} value={validationLink}/>
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="data_link">
+                                        <Form.Label>Data Link</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter data link" required onChange={event => setDataLink(event.target.value)} value={dataLink}/>
                                     </Form.Group>
 
                                     <Form.Group className="mb-4" controlId="fields">
