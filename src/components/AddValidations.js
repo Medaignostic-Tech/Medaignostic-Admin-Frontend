@@ -17,6 +17,7 @@ function AddValidations() {
     const [alert_status, setAlertStatus] = useState('text-danger');
     const [validationName, setValidationName] = useState('');
     const [validationLink, setValidationLink] = useState('');
+    const [dataLink, setDataLink] = useState('');
     const [validationFields, setValidationFields] = useState('');
 
     const loginNavigate = useNavigate();
@@ -27,7 +28,7 @@ function AddValidations() {
             fields.push(field);
         }
         event.preventDefault();
-        const response = await auth.addValidations(validationName, validationLink, fields);
+        const response = await auth.addValidations(validationName, validationLink, dataLink, fields);
         const status = await response;
         setAlert(status[0]);
         setAlertStatus(status[1]);
@@ -75,6 +76,11 @@ function AddValidations() {
                                     <Form.Group className="mb-3" controlId="validation_link">
                                         <Form.Label>Validation Link</Form.Label>
                                         <Form.Control type="text" placeholder="Enter validation link" required onChange={event => setValidationLink(event.target.value)}/>
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="data_link">
+                                        <Form.Label>Data Link</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter data link" required onChange={event => setDataLink(event.target.value)}/>
                                     </Form.Group>
 
                                     <Form.Group className="mb-4" controlId="fields">
