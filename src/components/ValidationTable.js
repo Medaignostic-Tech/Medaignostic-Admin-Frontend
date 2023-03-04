@@ -28,11 +28,12 @@ function ValidationTable() {
         dashboardNavigate(0);
     }
 
-    const handleUpdate = (id, validation_name, validation_link, field_names) => {
+    const handleUpdate = (id, validation_name, validation_link, data_link, field_names) => {
         const updateData = {
             "id": id,
             "validation_name": validation_name,
             "validation_link": validation_link,
+            "data_link": data_link,
             "field_names": field_names
         }
         dashboardNavigate("/update_validations", {replace: true, state: updateData});
@@ -63,6 +64,7 @@ function ValidationTable() {
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Validation Link</th>
+                                    <th>Validation Data</th>
                                     <th>Form Fields</th>
                                     <th>Operations</th>
                                 </tr>
@@ -73,9 +75,10 @@ function ValidationTable() {
                                         <td>{index + 1}</td>
                                         <td>{item.validation_name}</td>
                                         <td>{item.validation_link}</td>
+                                        <td>{item.data_link}</td>
                                         <td>{item.field_names.join(" , ")}</td>
                                         <td>
-                                            <Button variant='warning' onClick={() => handleUpdate(item._id, item.validation_name, item.validation_link, item.field_names.join(";"))}>Update</Button>
+                                            <Button variant='warning' onClick={() => handleUpdate(item._id, item.validation_name, item.validation_link, item.data_link, item.field_names.join(";"))}>Update</Button>
                                             &nbsp;&nbsp;&nbsp;
                                             <Button variant='danger' onClick={async() => await handleDelete(item._id)}>Delete</Button>
                                         </td>
