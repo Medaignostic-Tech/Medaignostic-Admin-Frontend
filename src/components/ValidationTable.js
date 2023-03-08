@@ -64,7 +64,7 @@ function ValidationTable() {
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Validation Link</th>
-                                    <th>Validation Data</th>
+                                    <th>Data Link</th>
                                     <th>Form Fields</th>
                                     <th>Operations</th>
                                 </tr>
@@ -72,7 +72,7 @@ function ValidationTable() {
                             <tbody>
                                 {data.map((item, index) => (
                                     <tr key={index}>
-                                        <td>{index + 1}</td>
+                                        <td>{((page - 1) * 10) + (index + 1)}</td>
                                         <td>{item.validation_name}</td>
                                         <td>{item.validation_link}</td>
                                         <td>{item.data_link}</td>

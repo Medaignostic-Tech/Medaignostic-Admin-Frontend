@@ -61,6 +61,7 @@ function UpdateValidations() {
             setValidationName(location.state.validation_name);
             setValidationLink(location.state.validation_link);
             setValidationFields(location.state.field_names);
+            setDataLink(location.state.data_link);
         }
     }, [alert]);
 

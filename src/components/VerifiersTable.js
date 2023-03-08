@@ -59,7 +59,7 @@ function VerifiersTable() {
                             <tbody>
                                 {data.map((item, index) => (
                                     <tr key={index}>
-                                        <td>{index + 1}</td>
+                                        <td>{((page - 1) * 10) + (index + 1)}</td>
                                         <td>{item.name}</td>
                                         <td>{item.email}</td>
                                         <td>{item.validation_name}</td>

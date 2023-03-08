@@ -74,7 +74,7 @@ function FormTable() {
                             <tbody>
                                 {data.map((item, index) => (
                                     <tr key={index}>
-                                        <td>{index + 1}</td>
+                                        <td>{((page - 1) * 10) + (index + 1)}</td>
                                         <td>{item.organ}</td>
                                         <td>{item.name}</td>
                                         <td>{item.label}</td>
