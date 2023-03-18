@@ -8,7 +8,6 @@ import aboutImg from '../assets/bg.jpg';
 
 
 function Home() {
-    const isMobile = window.innerWidth < 768;
 
     return (
         <div className="home-background">
@@ -25,7 +24,7 @@ function Home() {
             </Parallax>
             <Parallax bgImage={aboutImg} strength={500} renderLayer={() => (<HomeFeatures />)}>
                 <div style={{
-                    height: '200vh'
+                    height: window.innerWidth < 768 ? '500vh' : '200vh'
                 }}></div>
             </Parallax>
             <HomeTeam />
